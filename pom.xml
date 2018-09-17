@@ -9,20 +9,20 @@
 	<name>JPMML-SparkML-LightGBM</name>
 	<description>JPMML-SparkML plugin for converting LightGBM-Spark models to PMML</description>
 
-  <repositories>
-    <repository>
-      <id>azureedge</id>
-      <name>MMLSpark azureedge</name>
-      <url>https://mmlspark.azureedge.net/maven</url>
-    </repository>
-  </repositories>
+	<repositories>
+		<repository>
+			<id>azureedge</id>
+			<name>MMLSpark azureedge</name>
+			<url>https://mmlspark.azureedge.net/maven</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.microsoft.ml.spark</groupId>
 			<artifactId>mmlspark_2.11</artifactId>
-      <!-- Here we need commit https://github.com/Azure/mmlspark/pull/348-->
-      <version>0.13.dev18+3.gab13363</version>
+			<!-- TODO: upgrade to 0.14 once released. -->
+			<version>0.13.dev18+3.gab13363</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.spark</groupId>
@@ -43,24 +43,24 @@
 			</exclusions>
 		</dependency>
 
-    <dependency>
-      <groupId>org.jpmml</groupId>
-      <artifactId>jpmml-lightgbm</artifactId>
-      <version>1.2.0</version>
-    </dependency>
+		<dependency>
+			<groupId>org.jpmml</groupId>
+			<artifactId>jpmml-lightgbm</artifactId>
+			<version>1.2.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.jpmml</groupId>
 			<artifactId>jpmml-sparkml</artifactId>
 			<version>[1.1.20,)</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.jpmml</groupId>
 			<artifactId>pmml-evaluator</artifactId>
@@ -121,4 +121,3 @@
 		</plugins>
 	</build>
 </project>
-
