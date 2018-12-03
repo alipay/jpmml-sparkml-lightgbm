@@ -4,7 +4,7 @@ JPMML-SparkML plugin for converting [LightGBM-Spark](https://github.com/Azure/mm
 
 # Prerequisites #
 * [Apache Spark](http://spark.apache.org/) 2.2.X or 2.3.X.
-* [LightGBM-Spark](https://github.com/Azure/mmlspark) 0.13.dev17+1.g4a9bd92.
+* [LightGBM-Spark](https://github.com/Azure/mmlspark) 0.14.
 
 # Installation #
 
