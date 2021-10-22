@@ -3,8 +3,8 @@ JPMML-SparkML-LightGBM
 JPMML-SparkML plugin for converting [LightGBM-Spark](https://github.com/Azure/mmlspark/blob/master/docs/lightgbm.md) models to PMML.
 
 # Prerequisites #
-* [Apache Spark](http://spark.apache.org/) 2.2.X or 2.3.X.
-* [LightGBM-Spark](https://github.com/Azure/mmlspark) 0.14.
+* [Apache Spark](http://spark.apache.org/) 2.4.x
+* [LightGBM-Spark](https://github.com/Azure/mmlspark) 0.18.1.
 
 # Installation #
 
@@ -17,9 +17,28 @@ The build installs JPMML-SparkML-LightGBM library into local repository using co
 
 # Usage #
 
-The JPMML-SparkML-LightGBM library extends the [JPMML-SparkML](https://github.com/jpmml/jpmml-sparkml) library with support for `com.microsoft.ml.spark.LightGBMClassificationModel` prediction model classes.
+The JPMML-SparkML-LightGBM library extends the [JPMML-SparkML](https://github.com/jpmml/jpmml-sparkml) library with support for `com.microsoft.ml.spark.lightgbm.LightGBMClassificationModel` prediction model classes.
 
-[Add an example here]
+
+add  `org.jpmml:jpmml-sparkml-lightgbm:1.0-SNAPSHOT.jar` to CLASSPATH
+```python
+
+import  mmlspark
+import mmlspark.train
+from pyspark.ml import PipelineModel
+
+df = spark.sql("select * from algo_dc_ml_split_data")
+model = PipelineModel.load("/user/turing/lightgbm_spark")
+
+from pyspark2pmml import PMMLBuilder
+
+pmmlBuilder = PMMLBuilder(spark.sparkContext, df, model)
+
+pmmlBuilder.buildFile("algo_dc_ml_2c_lightgbm_spark.xml")
+
+hdfs_client.upload("algo_dc_ml_2c_lightgbm_spark.xml","${hdfs_path}")
+
+```
 
 # License #
 
