@@ -1,7 +1,7 @@
 package org.jpmml.sparkml.lightgbm;
 
-import com.microsoft.ml.spark.LightGBMBooster;
-import com.microsoft.ml.spark.LightGBMClassificationModel;
+import com.microsoft.ml.spark.lightgbm.LightGBMBooster;
+import com.microsoft.ml.spark.lightgbm.LightGBMClassificationModel;
 import org.dmg.pmml.Model;
 import org.jpmml.converter.Schema;
 import org.jpmml.sparkml.ClassificationModelConverter;
@@ -12,7 +12,6 @@ public class LightGBMClassificationModelConverter extends ClassificationModelCon
   public LightGBMClassificationModelConverter(LightGBMClassificationModel model) {
     super(model);
   }
-
   @Override
   public Model encodeModel(Schema schema) {
     LightGBMClassificationModel model = getTransformer();
