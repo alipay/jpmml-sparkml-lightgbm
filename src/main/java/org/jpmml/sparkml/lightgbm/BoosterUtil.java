@@ -1,6 +1,6 @@
 package org.jpmml.sparkml.lightgbm;
 
-import com.microsoft.ml.spark.LightGBMBooster;
+import com.microsoft.ml.spark.lightgbm.LightGBMBooster;
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.OpType;
@@ -10,11 +10,14 @@ import org.jpmml.converter.*;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.mining.MiningModelUtil;
 import org.jpmml.lightgbm.GBDT;
+import org.jpmml.lightgbm.HasLightGBMOptions;
 import org.jpmml.lightgbm.LightGBMUtil;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 public class BoosterUtil {
@@ -39,8 +42,10 @@ public class BoosterUtil {
     };
 
     Schema lgbmSchema = schema.toTransformedSchema(function);
-
-    MiningModel model = gbdt.encodeMiningModel(null, false, lgbmSchema)
+    Map<String, Object> options = new LinkedHashMap<>();
+    options.put(HasLightGBMOptions.OPTION_COMPACT, true);
+    options.put(HasLightGBMOptions.OPTION_NUM_ITERATION, null);
+    MiningModel model = gbdt.encodeMiningModel(options, lgbmSchema)
         .setOutput(ModelUtil.createPredictedOutput(FieldName.create("gbtValue"), OpType.CONTINUOUS, DataType.DOUBLE));
     return MiningModelUtil.createBinaryLogisticClassification(
         model, 2d, 0d,
